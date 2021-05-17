@@ -4,7 +4,7 @@
  * @Author: jiang.liu
  * @Date: 2021-05-17 14:15:56
  * @LastEditors: jiang.liu
- * @LastEditTime: 2021-05-17 14:50:55
+ * @LastEditTime: 2021-05-17 15:58:45
 -->
 <!DOCTYPE html>
 <html lang="en">
@@ -42,7 +42,7 @@
       return target
     }
 
-    // var person1 = shallowCopy(person)
+    // var person1 = shallowCopy(person)                          
     // person1.name = '王孝行'
     // person1.hobby[0] = '玩耍'
     // console.log(person1);
@@ -50,6 +50,9 @@
    function deepClone(obj) {
     //  var cloneOb = {}
      var cloneObj = new obj.constructor()
+     if(obj === null) return obj
+     if(obj instanceof Date) return new Date(obj)
+     if(ojb instanceof RegExp) return new RegExp(obj)
      if(typeof obj !== 'object') return obj
      for(var i in obj) {
        if(obj.hasOwnProperty(i)) {
