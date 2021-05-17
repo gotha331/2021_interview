@@ -1,0 +1,35 @@
+<!--
+ * @Files: 
+ * @Version: 1.0
+ * @Author: jiang.liu
+ * @Date: 2021-05-17 11:41:09
+ * @LastEditors: jiang.liu
+ * @LastEditTime: 2021-05-17 11:44:42
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>箭头函数中的this</title>
+</head>
+<body>
+  <script>
+    var x = 11;
+    var obj = {
+      x:22,
+      say:()=> {
+        console.log(this.x); //箭头函数中的this继承自父执行上下文中的this，这里只想window
+      },
+      sayHi:function() {
+        console.log(this.x);
+      }
+    }
+    
+    obj.say(); // 11
+    obj.sayHi(); // 22
+  </script>
+  
+</body>
+</html>

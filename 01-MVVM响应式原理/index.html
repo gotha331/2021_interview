@@ -4,7 +4,7 @@
  * @Author: jiang.liu
  * @Date: 2021-05-11 17:43:47
  * @LastEditors: jiang.liu
- * @LastEditTime: 2021-05-11 18:13:14
+ * @LastEditTime: 2021-05-13 17:46:51
 -->
 <!DOCTYPE html>
 <html lang="en">
@@ -25,13 +25,14 @@
     </ul>
     <h3>{{ msg }}</h3>
     <div v-text="msg"></div>
+    <div v-text="person.fav"></div>
     <div v-html="htmlStr"></div>
     <input type="text" v-model="msg">
   </div>
   
-  <script src="./vue.js"></script>
+  <script src="./MVue.js"></script>
   <script>
-    let vm = new Vue({
+    let vm = new MVue({
       el:'#app',
       data:{
         person:{

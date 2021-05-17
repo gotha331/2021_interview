@@ -1,0 +1,62 @@
+<!--
+ * @Files: 
+ * @Version: 1.0
+ * @Author: jiang.liu
+ * @Date: 2021-05-17 11:02:48
+ * @LastEditors: jiang.liu
+ * @LastEditTime: 2021-05-17 11:17:52
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>预编译</title>
+</head>
+<body>
+  <script>
+    function fn(a,c) {
+      console.log(a); // f a(){}
+      var a = 123
+      console.log(a); // 123
+      console.log(c); // f c(){}
+      function a() {}
+
+      if (false) {
+        var d = 678
+      }
+      console.log(d); // undefined
+      console.log(b); // undefined
+
+      var b = function() {}
+      console.log(b); // f() {}
+      function c() {}
+      console.log(c); // f c() {}
+    }
+
+    fn(1,2)
+
+    // 预编译
+    // 作用域的创建阶段 预编译的阶段
+    // 预编译的时候做了哪些事情
+    // js的变量对象 AO对象 供js引擎自己去访问
+    // 1.创建了AO对象
+    // 2.找形参和变量的声明 作为AO对象的属性名，值是undefined
+    // 3.实参和形参相统一
+    // 4.找函数声明 会覆盖变量的声明
+
+    /* 
+    AO:{
+      a:undefined 1 f a(){}  预编译阶段，函数声明会覆盖变量声明
+      c:undefined 2 f c(){}
+      d:undefined
+      b:undefined
+    }
+    
+    
+    */
+  </script>
+  
+</body>
+</html>

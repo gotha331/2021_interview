@@ -1,0 +1,67 @@
+<!--
+ * @Files: 
+ * @Version: 1.0
+ * @Author: jiang.liu
+ * @Date: 2021-05-17 14:15:56
+ * @LastEditors: jiang.liu
+ * @LastEditTime: 2021-05-17 14:50:55
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>js中的深浅拷贝</title>
+</head>
+<body>
+  <script>
+    var a = 123
+    var obj = {}
+
+    var person = {
+      name:'帅帅',
+      hobby:['学习',['看电影','shopping'],'跑步']
+    }
+    console.log(person);
+
+    // var person1 = person
+    // person1.name = '王孝行'
+    // person1.hobby[0] = '玩耍'
+    // console.log(person);
+    // console.log(person1);
+
+
+    function shallowCopy(obj) {
+      var target = {}
+      for (var i in obj) {
+        if(obj.hasOwnProperty(i)) {
+          target[i] = obj[i]
+        }
+      }
+      return target
+    }
+
+    // var person1 = shallowCopy(person)
+    // person1.name = '王孝行'
+    // person1.hobby[0] = '玩耍'
+    // console.log(person1);
+
+   function deepClone(obj) {
+    //  var cloneOb = {}
+     var cloneObj = new obj.constructor()
+     if(typeof obj !== 'object') return obj
+     for(var i in obj) {
+       if(obj.hasOwnProperty(i)) {
+         cloneObj[i] = deepClone(obj[i])
+       }
+     }
+   }
+
+    var person1 = deepClone(person)
+    person1.name = '王孝行'
+    person1.hobby[0] = '玩耍'
+    console.log(person1);
+  </script>
+</body>
+</html>
