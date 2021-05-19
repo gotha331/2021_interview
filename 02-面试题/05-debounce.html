@@ -1,0 +1,71 @@
+<!--
+ * @Files: 防抖函数
+ * @Version: 1.0
+ * @Author: jiang.liu
+ * @Date: 2021-05-19 16:37:53
+ * @LastEditors: jiang.liu
+ * @LastEditTime: 2021-05-19 17:38:45
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>debounce防抖函数</title>
+</head>
+<body>
+  <input type="text" id="input"> 
+
+  <script>
+    var input = document.getElementById('input')
+
+    // // 防抖的函数
+    // function debounce(delay,value) {
+    //   let timer 
+    //   clearTimeout(timer)
+    //   // 我们想清除的是setTimeout 我们应该存储这个timer的变量
+    //   // timer变量需要一直保存在内存中
+    //   // 既然不想打印之前已经输入的结果，那就清除以前触发的定时器
+    //   // 我们应该存储这个timer的变量
+    //   // timer一直要在内存当中 内存的泄露（闭包  ）
+
+    //   timer = setTimeout(() => {
+    //     console.log(value);
+    //   }, delay);
+    // }
+
+
+       // 防抖的函数
+    function debounce(delay,callback) {
+      let timer 
+      console.log(timer);
+      return function(value) {
+          clearTimeout(timer)
+          // 我们想清除的是setTimeout 我们应该存储这个timer的变量
+          // timer变量需要一直保存在内存中
+          // 既然不想打印之前已经输入的结果，那就清除以前触发的定时器
+          // 我们应该存储这个timer的变量
+          // timer一直要在内存当中 内存的泄露（闭包  ）
+
+            timer = setTimeout(() => {
+              callback(value)
+            }, delay);
+          }
+    }
+
+    function fn(value) {
+      console.log(value)
+    }
+    
+    // 我们需要的是:首先 输入框的结果只出现一次，是在我键盘抬起不再输入之后的1s之后，打印input的value值
+    var debounceFunc = debounce(1000,fn)
+    input.addEventListener("keyup",function(e) {
+      // debounce(1000,e.target.value)
+      debounceFunc(e.target.value)
+
+    })
+  </script>
+  
+</body>
+</html>
