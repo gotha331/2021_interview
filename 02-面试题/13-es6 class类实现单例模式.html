@@ -1,0 +1,96 @@
+<!--
+ * @Files: 
+ * @Version: 1.0
+ * @Author: jiang.liu
+ * @Date: 2021-05-21 15:24:34
+ * @LastEditors: jiang.liu
+ * @LastEditTime: 2021-05-21 17:20:18
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>es6 class类实现单例模式</title>
+</head>
+<body>
+    <!-- class类可以看作是es5构造函数的语法糖 -->
+
+    <script>
+      // es5构造函数
+      // function Person(name,sex) {
+      //   this.name = name 
+      //   this.sex = sex
+      // }
+
+      // Person.prototype.say = function() {
+      //   console.log('升官发财，名利双收');
+      // }
+
+      // let person1 = new Person('帅帅','男')
+      // console.log(person1.name);
+      // person1.say()
+
+
+      // es6实现
+      // class Person {
+      //   constructor(name,sex) {
+      //     this.name = name 
+      //     this.sex =sex 
+      //   }
+
+      //   say() {
+      //     console.log('开心幸福');
+      //   }
+      // }
+
+      // let person2 = new Person("帅帅","大帅哥")
+      // console.log(person2.name,person2.sex);
+      // person2.say()
+
+      // console.log(person2.say === Person.prototype.say);  //true
+
+
+      // es6 实现单例模式
+      // 静态方法 static:只能被类本身调用,不能被实例调用
+      // class Foo {
+      //   static classMethod() {
+      //     return 'hello'
+      //   }
+      // }
+
+      // let foo = new Foo()
+      // console.log(Foo.classMethod());  // hello 
+      // console.log(foo.classMethod());  
+
+
+
+      // 江哥达 单例
+      class jgdFilm {
+        constructor(name,creator,products) {
+          this.name = name
+          this.creator = creator
+          this.products = products
+        }
+
+        static getInstance(name,creator,products) {
+          if(!this.instance) {
+            this.instance = new jgdFilm(name,creator,products)
+          }
+          return this.instance
+        }
+      }
+
+      let jgdCom = jgdFilm.getInstance('江哥达','帅帅',['影视解说','幕后故事','影视推广'])
+
+      let jgdComCom = jgdFilm.getInstance('江哥达copy','哥达',['美食推广','直播带货'])
+
+      console.log(jgdCom);
+      // 单例模式，数据按照第一项jgdCom传入的参数输出
+      console.log(jgdComCom);
+      console.log(jgdCom === jgdComCom);  // true
+
+    </script>
+</body>
+</html>

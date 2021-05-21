@@ -1,0 +1,100 @@
+<!--
+ * @Files: 
+ * @Version: 1.0
+ * @Author: jiang.liu
+ * @Date: 2021-05-21 13:57:39
+ * @LastEditors: jiang.liu
+ * @LastEditTime: 2021-05-21 14:31:50
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>es5单例模式</title>
+</head>
+<body>
+  <button id="button">登录</button>
+  <script>
+    /* 方法一：先创建，点击登录时，显示 */
+    /* 缺点：资源的浪费 */
+    // var loginLayer = (function() {
+    //   var div = document.createElement("div")
+    //   div.innerHTML = "我是登录的弹窗"
+    //   div.style.display = "none"
+    //   document.body.appendChild(div)
+    //   return div
+    // })()
+
+    // document.getElementById(button).onclick = function() {
+    //   loginLayer.style.display = 'block'
+    // }
+
+
+    /* 方法二：点击时再创建*/
+    /* 缺点：每点击一次，都创建 */
+    // var createLoginLayer = function() {
+    //   var div = document.createElement('div')
+    //   div.innerHTML = "我是登陆的弹窗"
+    //   div.style.display = "none"
+    //   document.body.appendChild(div)
+    //   return div
+    // }
+
+    // document.getElementById('button').onclick = function() {
+    //   var loginLayer = createLoginLayer()
+    //   loginLayer.style.display = 'block'
+    // }
+
+    // /* 方法三：单例模式 */
+    // var createLoginLayer = function() {
+    //   var div 
+    //   // 如果说 这个div 不被销毁 一直在内存中的话
+    //   return function() {
+    //     if(!div) {
+    //       div = document.createElement("div")
+    //       div.innerHTML = "我是登录的弹窗"
+    //       div.style.display = "none"
+    //       document.body.appendChild(div)
+    //     }
+    //     return div
+    //   }
+    // }()
+
+    // document.getElementById('button').onclick = function() {
+    //   var loginLayer = createLoginLayer()
+    //   loginLayer.style.display = 'block'
+    // }
+
+    /* 方法三改进：
+    一种思想：单一职责的思想
+    形成单例
+    创建弹窗
+    */
+
+    // 单例的职责
+    var getSingle = function(fn) {
+      var result 
+      return function () {
+        return result || (result = fn.apply(this,arguments))
+      }
+    }
+
+    // 创建登录框的职责
+    var createLoginLayer = function() {
+      var div = document.createElement('div')
+      div.innerHTML = "我是登录的弹窗"
+      div.style.display = 'none'
+      document.body.appendChild(div)
+      return div
+    }
+
+    var createSinglelogin = getSingle(createLoginLayer)
+    document.getElementById('button').onclick = function() {
+      var loginLayer = createSinglelogin()
+      loginLayer.style.display = 'block'
+    }
+  </script>
+</body>
+</html>

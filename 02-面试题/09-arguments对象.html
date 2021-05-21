@@ -1,0 +1,33 @@
+<!--
+ * @Files: 
+ * @Version: 1.0
+ * @Author: jiang.liu
+ * @Date: 2021-05-20 14:25:01
+ * @LastEditors: jiang.liu
+ * @LastEditTime: 2021-05-20 15:25:30
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>arguments对象</title>
+</head>
+<body>
+  <script>
+    function get() {
+      console.log(arguments);
+    }
+
+    get(1,2,3)
+
+    // arguments 类数组对象
+    // 箭头函数没有arguments对象
+    // 如何转换成数组：
+    // 1.ES6 展开运算符 ...arguments
+    // 2.Array.prototype.slice.call(arguments)
+  </script>
+
+</body>
+</html>

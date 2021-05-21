@@ -1,0 +1,84 @@
+<!--
+ * @Files: 
+ * @Version: 1.0
+ * @Author: jiang.liu
+ * @Date: 2021-05-20 16:39:34
+ * @LastEditors: jiang.liu
+ * @LastEditTime: 2021-05-21 09:09:28
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>js的event-loop</title>
+</head>
+<body>
+  <script>
+ 
+    // event-loop 事件循环机制 由三部分组成：调用栈、微任务队列、消息队列
+    // event-loop开始的时候，会从全局一行一行的执行，遇到函数调用，会压倒调用栈中，
+    // 被压入的函数被称之为帧，当函数返回后会从调用栈中弹出
+
+  //  function fun1() {
+  //     console.log(1);
+  //   }
+
+  //   function fun2() {
+  //     console.log(2);
+  //     fun1()
+  //     console.log(3);
+  //   }
+
+  //   fun2()  // 2 1 3
+
+    console.log('**********************');
+
+    // js中的异步操作：比如fetch、setTimeout、setInterval 压入到调用栈中的时候，
+    // 里面的消息会进入到消息队列中去，消息队列中，会等到调用栈清空之后再执行
+    // function func3() {
+    //   console.log(1);
+    // }
+
+    // function func4() {
+    //   setTimeout(() => {
+    //     console.log(2);
+    //   }, 0);
+    //   func3()
+    //   console.log(3);
+    // }
+
+    // func4() // 1 3 2 
+
+    console.log('**********************');
+
+    // promise async await的异步操作的时候，会加入到微任务中去，（会在调用栈清空时，立即执行？？）
+    // 调用栈中加入的微任务会立马执行
+
+    // 微任务队列 要比消息队列 先执行
+
+    var p = new Promise(resolve => {
+      console.log(4);
+      resolve(5)
+    })
+
+    function func5() {
+      console.log(1);
+    }
+    function func6() {
+      setTimeout(() => {
+        console.log(2);
+      }, 0);
+      func5()
+      console.log(3);
+      p.then(resolve => {
+        console.log(resolve);
+      })
+    }
+
+    func6() // 4 1 3 5 2
+
+  </script>
+</body>
+</html>
