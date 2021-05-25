@@ -1,0 +1,65 @@
+<!--
+ * @Files: 
+ * @Version: 1.0
+ * @Author: jiang.liu
+ * @Date: 2021-05-25 15:20:43
+ * @LastEditors: jiang.liu
+ * @LastEditTime: 2021-05-25 15:36:28
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>数组扁平化</title>
+</head>
+<body>
+  <script>
+    // 数组扁平化是指将一个多维数组变为一个一维数组
+    const arr = [1,[2,[3,[4,5]]],6]; // => [1,2,3,4,5,6]
+
+    // 方法1：使用flat()
+    const res1 = arr.flat(Infinity)  
+    console.log(res1);
+
+    // 方法2：利用正则 （数据类型都会变为字符串）
+    const res2 = JSON.stringify(arr).replace(/\[|\]/g,'').split(',')
+    console.log(res2);
+
+    // 方法3：正则改良版本
+    const res3 = JSON.parse('[' + JSON.stringify(arr).replace(/\[|\]/g,'') + ']');
+    console.log(res3);
+
+    // 方法4：使用reduce
+    const flatten = arr => {
+      return arr.reduce(
+        (pre,cur) => {
+          return pre.concat(Array.isArray(cur) ? flatten(cur) : cur)
+        },[])
+    }
+
+    const res4 = flatten(arr)
+    console.log(res4);
+
+    // 方法5：函数递归
+    const res5 = []
+    const fn = arr => {
+      for (let i = 0; i < arr.length; i++) {
+       
+        if(Array.isArray(arr[i])) {
+          fn(arr[i])
+        }else {
+          res5.push(arr[i])
+        }
+      }
+    }
+
+    fn(arr)
+
+    console.log(res5);
+
+  </script>
+  
+</body>
+</html>
