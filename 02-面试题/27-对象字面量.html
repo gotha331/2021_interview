@@ -1,0 +1,53 @@
+<!--
+ * @Files: 
+ * @Version: 1.0
+ * @Author: jiang.liu
+ * @Date: 2021-05-27 14:18:07
+ * @LastEditors: jiang.liu
+ * @LastEditTime: 2021-05-27 16:11:24
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>对象字面量</title>
+</head>
+<body>
+  <script>
+    // 需求：
+    // 基于颜色打印水果
+    // function printFruits(color) {
+    //   switch(color) {
+    //     case 'red':
+    //       return ['apple']
+    //       break;
+        
+    //     case 'yellow':
+    //       return ['banana']
+    //       break;
+        
+    //     default:
+    //       return []
+    //   }
+    // }
+
+    // console.log(printFruits(null));
+    // console.log(printFruits('yellow'));
+
+    // 对象字面量
+    const fruitsColor = {
+      red:['apple'],
+      yellow:['banana']
+    }
+
+    function printFruits(color) {
+      return fruitsColor[color] || []
+    }
+    
+    console.log(printFruits(null));
+    console.log(printFruits('yellow'));
+  </script>
+</body>
+</html>
