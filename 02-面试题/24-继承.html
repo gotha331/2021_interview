@@ -1,0 +1,148 @@
+<!--
+ * @Files: 
+ * @Version: 1.0
+ * @Author: jiang.liu
+ * @Date: 2021-05-27 10:05:45
+ * @LastEditors: jiang.liu
+ * @LastEditTime: 2021-05-27 10:50:59
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>继承</title>
+</head>
+<body>
+  <script>
+    // function Parent() {
+    //   this.name = ['打篮球像蔡徐坤']
+    // }
+
+    // Parent.prototype.getName = function() {
+    //   return this.name 
+    // }
+
+    // function Child() {
+
+    // }
+
+    // Child.prototype = new Parent()
+    // Child.prototype.constructor = Child
+    // const child1 = new Child()
+    // const child2 = new Child()
+    // child1.name[0] = '鹿晗'
+
+    // console.log(child1.name);  // 鹿晗
+    // console.log(child2.name); //鹿晗
+    // 原型链继承缺点：原型指向同一个parent实例，当有两个实例化对象时，修改一个，会影响其他实例；没有实现super功能
+
+
+    
+
+    // 构造函数继承
+    // function Parent(name) {
+    //   this.name = [name]
+    // }
+
+    // Parent.prototype.getName = function() {
+    //   return this.name
+    // }
+
+    // // 在子类的构造函数中执行父类的构造函数，并为其绑定子类的this
+    // function Child() {
+    //   Parent.call(this,'蔡大大')
+    // }
+
+    // const child1 = new Child()
+    // const child2 = new Child()
+    // child1.name[0] = '鹿晗'
+
+    // console.log(child1.name);   // ['鹿晗']
+    // console.log(child2.name);   // ['蔡大大']
+    // console.log(child2.getName());  // 不能继承父类原型上的方法及属性
+
+
+    // 组合式继承
+    // function Parent(name) {
+    //   this.name = [name]
+    // }
+
+    // Parent.prototype.getName = function() {
+    //   return this.name
+    // }
+
+    // // 构造函数继承：在子类的构造函数中执行父类的构造函数，并为其绑定子类的this
+    // function Child() {
+    //   Parent.call(this,'蔡大大')
+    // }
+
+    // Child.prototype = new Parent()
+    // Child.prototype.constructor = Child
+
+    // const child1 = new Child()
+    // const child2 = new Child()
+    // child1.name[0] = '鹿晗'
+
+    // console.log(child1.name);   // ['鹿晗']
+    // console.log(child2.name);   // ['蔡大大']
+    // console.log(child2.getName());  // ['蔡大大']
+
+    
+
+    // 寄生式组合继承
+    //  function Parent(name) {
+    //   this.name = [name]
+    // }
+
+    // Parent.prototype.getName = function() {
+    //   return this.name
+    // }
+
+    // // 构造函数继承：在子类的构造函数中执行父类的构造函数，并为其绑定子类的this
+    // function Child() {
+    //   Parent.call(this,'蔡大大')
+    // }
+
+    // Child.prototype = Parent.prototype
+    // Child.prototype.constructor = Child
+
+    // const child1 = new Child()
+    // const child2 = new Child()
+    // child1.name[0] = '鹿晗'
+
+    // console.log(child1.name);   // ['鹿晗']
+    // console.log(child2.name);   // ['蔡大大']
+    // console.log(child2.getName());  // ['蔡大大']
+
+
+    // 终极boss
+      function Parent(name) {
+      this.name = [name]
+    }
+
+    Parent.prototype.getName = function() {
+      return this.name
+    }
+
+    // 构造函数继承：在子类的构造函数中执行父类的构造函数，并为其绑定子类的this
+    function Child() {
+      Parent.call(this,'蔡大大')
+    }
+
+    Child.prototype = Object.create(Parent.prototype)
+    Child.prototype.constructor = Child
+
+    const child1 = new Child()
+    const child2 = new Child()
+    child1.name[0] = '鹿晗'
+
+    console.log(child1.name);   // ['鹿晗']
+    console.log(child2.name);   // ['蔡大大']
+    console.log(child2.getName());  // ['蔡大大']
+
+  </script>
+  
+</body>
+</html>
