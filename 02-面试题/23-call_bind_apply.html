@@ -4,7 +4,7 @@
  * @Author: jiang.liu
  * @Date: 2021-05-26 17:38:01
  * @LastEditors: jiang.liu
- * @LastEditTime: 2021-05-26 18:04:19
+ * @LastEditTime: 2021-05-27 09:40:11
 -->
 <!DOCTYPE html>
 <html lang="en">
@@ -15,6 +15,9 @@
   <title>call bind apply</title>
 </head>
 <body>
+  <div class="div1"></div>
+  <div class="div1"></div>
+  <div class="div1"></div>
   <script>
     let obj = {
       name:'蔡徐坤'
@@ -48,6 +51,64 @@
     console.log(Math.max.call(null,...arr1));
     console.log(Math.max.apply(null,arr1));
      
+    //  应用
+    // 1.将伪数组转化成数组
+
+    // 伪数组：dom节点类
+    let div = document.getElementsByTagName('div')
+    console.log(div);
+    let arr2 = Array.prototype.slice.call(div)
+    console.log(arr2);
+
+    function listToArray(likeArray) {
+      var ary = []
+      try {
+        ary = Array.prototype.slice.call(likeArray)
+      } catch(e) {
+        for(var i = 0; i < likeArray.length; i++) {
+          ary[ary.length] = likeArray[i]
+        }
+      }
+    }
+
+    // 伪数组：arguments
+    function fn() {
+      console.log(arguments);
+      console.log(Array.prototype.slice.call(arguments));
+    }
+
+    fn(1,2,3,4,5)
+
+
+    // 
+    let obj1 = {
+      0:1,
+      1:'蔡徐坤',
+      2:'鹿晗',
+      length:3 //一定要有
+    }
+
+    console.log(Array.prototype.slice.call(obj1));
+
+    // 应用2：数组的拼接
+    let arr3 = [1,2,3]
+    let arr4 = [4,5,6]
+    console.log(arr3.concat(arr4));
+    console.log(arr3); // [1,2,3]
+    console.log(arr4); // [4,5,6]
+    Array.prototype.push.apply(arr3,arr4)
+    console.log(arr3); // [1,2,3,4,5,6]
+
+    // 应用3：判断数据类型
+    let array1 = [1,2,3]
+    function isArray(array) {
+      return Object.prototype.toString.call(array) === '[object Array]'
+      return Object.prototype.toString.call(array) === '[object Object]'
+      return Object.prototype.toString.call(array) === '[object String]'
+      return Object.prototype.toString.call(array) === '[object Null]'
+    }
+    console.log(isArray(array1)) // true
+
   </script>
   
 </body>
