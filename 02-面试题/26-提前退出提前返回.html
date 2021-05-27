@@ -1,0 +1,66 @@
+<!--
+ * @Files: 
+ * @Version: 1.0
+ * @Author: jiang.liu
+ * @Date: 2021-05-27 13:47:55
+ * @LastEditors: jiang.liu
+ * @LastEditTime: 2021-05-27 13:48:16
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>提前退出提前返回</title>
+</head>
+<body>
+  <script>
+    
+    // 需求：
+    // 如果没有动物，抛出异常
+    // 否则: 
+    // 打印动物的类型
+    // 打印动物的名字
+    // 打印动物的性别
+    // function printAnimalsDetails(animal) {
+    //   var result = null
+    //   if(animal) {
+    //     if(animal.type) {
+    //       if(animal.name) {
+    //         if(animal.gender) {
+    //           result = `${animal.name} is a ${animal.gender} ${animal.type}`
+    //         }else {
+    //           result = 'no animal gender'
+    //         }
+    //       }else {
+    //         result = 'no animal name'
+    //       }
+    //     }else {
+    //       result = 'no animal type'
+    //     }
+    //   }else{
+    //     result = "no animal"
+    //   }
+    //   return result
+    // }
+
+    // console.log(printAnimalsDetails());
+    // console.log(printAnimalsDetails({type:'dog',gender:'female'}));
+    // console.log(printAnimalsDetails({type:'dog',gender:'female',name:'旺财'}));
+    
+    // 提前退出和提前返回
+    const printAnimalsDetails = ({type,name,gender} = {}) => {
+      if(!type) return 'no animal type'
+      if(!name) return 'no animal name'
+      if(!gender) return 'no animal gender'
+      return `${name} is a ${gender} ${type}`
+    }
+    console.log(printAnimalsDetails());
+    console.log(printAnimalsDetails({type:'dog',gender:'female'}));
+    console.log(printAnimalsDetails({type:'dog',gender:'female',name:'旺财'}));
+
+  </script>
+  
+</body>
+</html>
