@@ -1,0 +1,40 @@
+<!--
+ * @Files: 
+ * @Version: 1.0
+ * @Author: jiang.liu
+ * @Date: 2021-06-06 16:23:49
+ * @LastEditors: jiang.liu
+ * @LastEditTime: 2021-06-06 16:27:47
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>directive</title>
+  <script src="./vue.js"></script>
+</head>
+<body>
+  <div id="root">
+    <input type="text" v-focus>
+
+  </div>
+  <script>
+    // 需求：实现输入自动发聚焦
+    
+    Vue.directive('focus',{
+      // 当被绑定的元素插入到dom中时
+      inserted:function(el) {
+        // 聚焦元素
+        el.focus()
+      }
+    })
+    
+    new Vue({
+      el:"#root"
+    })
+  </script>
+  
+</body>
+</html>
