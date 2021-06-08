@@ -4,15 +4,15 @@
  * @Author: jiang.liu
  * @Date: 2021-06-07 21:24:14
  * @LastEditors: jiang.liu
- * @LastEditTime: 2021-06-08 10:53:11
+ * @LastEditTime: 2021-06-08 14:20:23
 -->
 <template>
   <h1>{{ msg }}</h1>
 
   <p>
-    <a href="https://vitejs.dev/guide/features.html" target="_blank">
-      Vite Documentation
-    </a>
+    <a href="https://vitejs.dev/guide/features.html" target="_blank"
+      >Vite Documentation</a
+    >
     |
     <a href="https://v3.vuejs.org/" target="_blank">Vue 3 Documentation</a>
   </p>
@@ -26,6 +26,8 @@
     Edit
     <code>components/HelloWorld.vue</code> to test hot module replacement.
   </p>
+
+  <ModalButton></ModalButton>
 </template>
 
 <script>
@@ -39,12 +41,17 @@ import {
   toRefs,
   watch,
 } from "vue";
+import ModalButton from "./ModalButton.vue";
 
 export default {
   name: "HelloWorld",
   props: {
     msg: String,
   },
+  components: {
+    ModalButton,
+  },
+
   setup() {
     const { counter, doubleCounter } = useCounter();
 
