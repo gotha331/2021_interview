@@ -4,7 +4,7 @@
  * @Author: jiang.liu
  * @Date: 2021-06-07 21:24:14
  * @LastEditors: jiang.liu
- * @LastEditTime: 2021-06-08 14:20:23
+ * @LastEditTime: 2021-06-08 14:46:50
 -->
 <template>
   <h1>{{ msg }}</h1>
@@ -28,6 +28,7 @@
   </p>
 
   <ModalButton></ModalButton>
+  <Emits @click="onclick"></Emits>
 </template>
 
 <script>
@@ -42,6 +43,7 @@ import {
   watch,
 } from "vue";
 import ModalButton from "./ModalButton.vue";
+import Emits from "./Emits.vue";
 
 export default {
   name: "HelloWorld",
@@ -50,6 +52,12 @@ export default {
   },
   components: {
     ModalButton,
+    Emits
+  },
+  methods:{
+    onclick() {
+      console.log('click');
+    }
   },
 
   setup() {
@@ -62,9 +70,6 @@ export default {
     const desc = ref(null);
 
     watch(counter, (val, oldVal) => {
-      console.log(val);
-      console.log(oldVal);
-
       const p = desc.value;
       p.textContent = `counter change from ${oldVal} to ${val}`;
     });
