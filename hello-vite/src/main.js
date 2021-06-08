@@ -4,13 +4,17 @@
  * @Author: jiang.liu
  * @Date: 2021-06-07 15:45:32
  * @LastEditors: jiang.liu
- * @LastEditTime: 2021-06-08 16:03:59
+ * @LastEditTime: 2021-06-08 17:15:19
  */
 import { createApp, createRenderer } from 'vue'
 import App from './App.vue'
 import CanvasApp from './CanvasApp.vue'
 
-createApp(App).mount('#app')
+createApp(App).directive('highlight', {
+  beforeMount (el, binding, vnode) {
+    el.style.background = binding.value
+  }
+}).mount('#app')
 
 // 自定义渲染器
 const nodeOps = {

@@ -4,7 +4,7 @@
  * @Author: jiang.liu
  * @Date: 2021-06-07 21:24:14
  * @LastEditors: jiang.liu
- * @LastEditTime: 2021-06-08 16:40:17
+ * @LastEditTime: 2021-06-08 17:16:00
 -->
 <template>
   <h1>{{ msg }}</h1>
@@ -31,6 +31,8 @@
   <!-- <VmodelTest v-model:count="count"></VmodelTest> -->
   <!-- 等效于 -->
   <VmodelTest :count="count" @update:count="count = $event"></VmodelTest>
+
+  <p v-highlight="'yellow'">highlight this text!!!</p>
 </template>
 
 <script>
