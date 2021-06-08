@@ -4,15 +4,13 @@
  * @Author: jiang.liu
  * @Date: 2021-06-07 21:24:14
  * @LastEditors: jiang.liu
- * @LastEditTime: 2021-06-08 14:46:50
+ * @LastEditTime: 2021-06-08 16:40:17
 -->
 <template>
   <h1>{{ msg }}</h1>
 
   <p>
-    <a href="https://vitejs.dev/guide/features.html" target="_blank"
-      >Vite Documentation</a
-    >
+    <a href="https://vitejs.dev/guide/features.html" target="_blank">Vite Documentation</a>
     |
     <a href="https://v3.vuejs.org/" target="_blank">Vue 3 Documentation</a>
   </p>
@@ -29,6 +27,10 @@
 
   <ModalButton></ModalButton>
   <Emits @click="onclick"></Emits>
+
+  <!-- <VmodelTest v-model:count="count"></VmodelTest> -->
+  <!-- 等效于 -->
+  <VmodelTest :count="count" @update:count="count = $event"></VmodelTest>
 </template>
 
 <script>
@@ -44,17 +46,24 @@ import {
 } from "vue";
 import ModalButton from "./ModalButton.vue";
 import Emits from "./Emits.vue";
+import VmodelTest from "./VmodelTest.vue";
 
 export default {
   name: "HelloWorld",
   props: {
     msg: String,
   },
+  data() {
+    return {
+      count: 1
+    }
+  },
   components: {
     ModalButton,
-    Emits
+    Emits,
+    VmodelTest
   },
-  methods:{
+  methods: {
     onclick() {
       console.log('click');
     }
