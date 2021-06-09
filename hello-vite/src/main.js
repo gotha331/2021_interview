@@ -4,17 +4,20 @@
  * @Author: jiang.liu
  * @Date: 2021-06-07 15:45:32
  * @LastEditors: jiang.liu
- * @LastEditTime: 2021-06-09 09:40:51
+ * @LastEditTime: 2021-06-09 13:48:25
  */
 import { createApp, createRenderer } from 'vue'
 import App from './App.vue'
 import CanvasApp from './CanvasApp.vue'
+import EditTodo from './components/todos/EditTodo.vue'
 
-createApp(App).directive('highlight', {
-  beforeMount (el, binding, vnode) {
-    el.style.background = binding.value
-  }
-}).mount('#app')
+createApp(App)
+  .component('EditTodo', EditTodo)
+  .directive('highlight', {
+    beforeMount (el, binding, vnode) {
+      el.style.background = binding.value
+    }
+  }).mount('#app')
 
 // 自定义渲染器
 const nodeOps = {
