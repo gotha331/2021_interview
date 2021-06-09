@@ -4,7 +4,7 @@
  * @Author: jiang.liu
  * @Date: 2021-06-07 15:45:32
  * @LastEditors: jiang.liu
- * @LastEditTime: 2021-06-08 17:15:19
+ * @LastEditTime: 2021-06-09 09:40:51
  */
 import { createApp, createRenderer } from 'vue'
 import App from './App.vue'
@@ -132,4 +132,4 @@ function createCanvasApp (App) {
 }
 
 
-createCanvasApp(CanvasApp).mount("#demo")
+// createCanvasApp(CanvasApp).mount("#demo")
