@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "target": "esnext",
+    "module": "esnext",
+    "strict": true,
+    "noImplicitAny": true,
+    "noImplicitThis": true,
+    "strictNullChecks": true,
+    "jsx":"preserve",
+    "moduleResolution": "node"
+  },
+  "include":["src/**/*.ts","src/**/*.d.ts","src/**/*.vue"]
+}
