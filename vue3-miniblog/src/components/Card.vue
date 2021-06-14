@@ -4,13 +4,19 @@
  * @Author: jiang.liu
  * @Date: 2021-06-11 16:51:01
  * @LastEditors: jiang.liu
- * @LastEditTime: 2021-06-11 17:23:20
+ * @LastEditTime: 2021-06-14 14:15:13
 -->
 <template>
   <div class="card">
-    <div class="title"></div>
-    <div class="content"></div>
-    <div class="description"></div>
+    <div class="title">
+      <slot name="title"></slot>
+    </div>
+    <div class="content">
+      <slot name="content"></slot>
+    </div>
+    <div class="description">
+      <slot name="description"></slot>
+    </div>
   </div>
 </template>
 
@@ -24,7 +30,7 @@ export default {
 <style lang="scss" scoped>
 .card {
   width: 100%;
-  height: 444px;
+  // height: 444px;
   background-color: #fff;
   box-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
   border-radius: 2px;
@@ -33,7 +39,7 @@ export default {
 
   .title {
     height: 60px;
-    font-size: 1.25em;
+    // font-size: 1.25em;
   }
 
   .content {
@@ -50,15 +56,11 @@ export default {
   }
 
   .title,
-  .content {
-    border-bottom: 1px solid silver;
-  }
-
-  .title,
   .content,
   .description {
     padding: 16px;
     text-align: center;
+    border-bottom: 1px solid silver;
   }
 }
 </style>
