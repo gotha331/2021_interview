@@ -4,7 +4,7 @@
  * @Author: jiang.liu
  * @Date: 2021-06-14 21:41:00
  * @LastEditors: jiang.liu
- * @LastEditTime: 2021-06-14 23:16:31
+ * @LastEditTime: 2021-06-15 10:50:16
  */
 
 const path = require("path")
@@ -43,6 +43,22 @@ module.exports = {
             limit: 2048
           }
         }
+      },
+      {
+        test:/.scss$/,
+        // loader执行顺序，从下往上
+        use:[
+          'style-loader',
+          {
+            loader:"css-loader",
+            options:{
+              modules:true
+            }
+          },
+          'postcss-loader',
+          'sass-loader'
+        ],
+        
       }
     ]
   },
